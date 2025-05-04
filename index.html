@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="font-[Inter]">
 
 <head>
     <meta charset="UTF-8">
@@ -7,8 +7,8 @@
     <!-- Style Sheet  -->
     <link rel="stylesheet" href="style.css">
     <!------------------------------------>
-    <!-- Tailwind css CDN & Flowbite CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <!-- Tailwind css CDN & DaisyUI Componante CDN Link  -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-------------------------------------------------------------------------->
     <title>PH-TUBE</title>
@@ -31,7 +31,7 @@
                             </svg>
                         </div>
                         <input type="search" id="default-search"
-                            class="block w-full md:w-[400px] h-[60px] p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="block w-full md:w-[600px] h-[60px] p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search" required />
                     </div>
                 </form>
@@ -47,12 +47,17 @@
 
     </header>
 
+    <main>
+        <section id="videos-container"
+            class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10">
+
+        </section>
+    </main>
+
 
 
     <!-- Script File  -->
     <script src="/Scripts/video.js"></script>
-    <!-- flowbite js  -->
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 
 </html>
