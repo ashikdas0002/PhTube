@@ -57,25 +57,22 @@ const displayVideos = (videos) => {
         const card = document.createElement('div');
         card.innerHTML = `
 
-<div class="card bg-base-100  ">
-  <figure class="px-10 pt-10 h-[200px]">
+<div class="card bg-base-100 w-96 ">
+  <figure class="px-10 pt-10 h-[200px] relative">
     <img
       src=${thumbnail}
       alt="Video Thumbnail"
       class=" w-full h-full object-cover" />
+    <span class="absolute  bottom-2 bg-black text-white rounded p-2 font-bold">${others.posted_date}</span>
   </figure>
   <div class="px-0 py-2 flex gap-2">
       <div> <img  class="w-[40px] h-[40px] rounded-full" src=${authors[0].profile_picture} /></div>
 <div class="">
             <h2 class="text-[#171717] text-2xl font-bold font-[Inter]">${title} </h2>
-            <p  class=" text-[#1717179a] text-[20px] font-normal">${authors[0].profile_name} </p>
-            <div class="flex items-center gap-3" >  
+            <p  class=" text-[#1717179a] text-[20px] font-normal flex items-center gap-3">${authors[0].profile_name}   ${authors[0].verified === true ? ` <img class="w-[20px]"  src="https://img.icons8.com/?size=48&id=D9RtvkuOe31p&format=png" />
+            <div>` : ""} </p>  
             <p  class=" text-[#17171779] text-[20px] font-normal">${others.views} Views </p>
-            <img class="w-[20px]"  src="https://img.icons8.com/?size=48&id=D9RtvkuOe31p&format=png" />
-            <div>
-            
-
-  </div>
+           
 </div>
 
     `;
@@ -93,3 +90,4 @@ const displayVideos = (videos) => {
 
 loadCategories();
 loadVideos();
+
