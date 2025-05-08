@@ -8,6 +8,16 @@ const getTimeString = (time) => {
 
 }
 
+// Remove Active Calss 
+
+const removeActiveClass = () => {
+    const buttons = document.getElementsByClassName('category-btn');
+    console.log(buttons)
+    for (let btn of buttons) {
+        btn.classList.remove('activeBtn')
+    }
+}
+
 // Load Categories 
 const loadCategories = async () => {
     try {
@@ -22,12 +32,16 @@ const loadCategories = async () => {
     }
 
 }
+// Load Category Videos
 
 const loadCategoryVideo = async (id) => {
     // alert(id);
     const res = await fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`);
     const data = await res.json();
-    return displayVideos(data.category);
+    removeActiveClass();
+    const activeBtn = document.getElementById(`btn-${id}`);
+    activeBtn.classList.add('activeBtn')
+    displayVideos(data.category);
 }
 
 
@@ -39,7 +53,7 @@ const displayCategories = (categories) => {
     categories.forEach((item) => {
         const buttonContainer = document.createElement('div');
         buttonContainer.innerHTML = `
-    <button onclick= "loadCategoryVideo(${item.category_id})" class="btn btn-outline">${item.category}</button>
+    <button id="btn-${item.category_id}" onclick= "loadCategoryVideo(${item.category_id})" class="btn btn-outline  category-btn">${item.category}</button>
 
 
 
@@ -50,7 +64,7 @@ const displayCategories = (categories) => {
 
 };
 
-// Load Categories Videos
+
 
 
 
@@ -71,7 +85,32 @@ const loadVideos = async () => {
     }
 }
 
+// Load Details 
 
+const loadDetails = async (videoId) => {
+    const url = `https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayDetails(data.video);
+
+
+}
+
+const displayDetails = (video) => {
+    const { title, thumbnail, authors, others, description } = video;
+    console.log(video);
+    const detailsContainer = document.getElementById('modal-content');
+    // way-1 
+    // document.getElementById('showModal').click();
+    // way-2 
+    document.getElementById('customModal').showModal();
+    detailsContainer.innerHTML = `
+    <img src=${thumbnail} /> 
+    <p>${description} </p>
+    `;
+
+
+}
 
 // Show Videos 
 
@@ -99,7 +138,7 @@ const displayVideos = (videos) => {
         videoContainer.classList.add('grid');
     }
     videos.forEach((video) => {
-        const { title, thumbnail, authors, others } = video;
+        const { title, thumbnail, authors, others, } = video;
         console.log(video);
         const card = document.createElement('div');
         card.innerHTML = `
@@ -119,6 +158,7 @@ const displayVideos = (videos) => {
 <h2 class="text-[#171717] text-2xl font-bold "> ${title}</h2>
 <p class=" text-[#17171777] text-[20px] font-normal  flex items-center gap-2">${authors[0].profile_name} ${authors[0].verified === true ? `<img class="w-5" src="https://img.icons8.com/?size=48&id=D9RtvkuOe31p&format=png"/>` : ""} </p>
 <p class="text-[#17171777] text-[20px] font-normal">${others.views} Views </p>
+<div> <button onclick="loadDetails('${video.video_id}')" class="btn btn-sm btn-error">Details</button> </div> 
 </div>
 
 </div>
@@ -141,4 +181,6 @@ const displayVideos = (videos) => {
 
 loadCategories();
 loadVideos();
+
+
 
